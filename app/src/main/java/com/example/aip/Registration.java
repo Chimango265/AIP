@@ -1,9 +1,12 @@
 package com.example.aip;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,13 +33,15 @@ public class Registration extends AppCompatActivity {
     TextView displayName;
     EditText soil, location, size, crop;
     Button btn;
-
     String name, nationalId;
+
+    Boolean activityDecider = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
 
         displayName = findViewById(R.id.textView2);
         btn = findViewById(R.id.button3);
@@ -59,42 +64,40 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String soilHealth = soil.getText().toString();
+                /*String soilHealth = soil.getText().toString();
                 String locationText = location.getText().toString();
                 int farmSize = Integer.parseInt(size.getText().toString());
-                String mainCrop = crop.getText().toString();
+                String mainCrop = crop.getText().toString();*/
 
-                postData(soilHealth, locationText, mainCrop, farmSize);// calling method to send API requests
+                //postData(soilHealth, locationText, mainCrop, farmSize);// calling method to send API requests
+                postData();
             }
         });
 
-
-
     }
 
-    private void postData(String soilHealth, String location, String mainCrop, int farmSize) {
-        String url = "http://192.168.43.205:8080/api/register";
+    private void postData() {
+        String url = "http://192.168.43.205:8080/api/register"; // url to process the API request
 
-        RequestQueue queue = Volley.newRequestQueue(Registration.this);
+        RequestQueue queue = Volley.newRequestQueue(Registration.this); // volley request Object
 
-        JSONObject farmer = new JSONObject();
-        JSONObject farm = new JSONObject();
-
-
+        JSONObject farmer = new JSONObject(); // JSON object to hold farmer details
+        JSONObject farm = new JSONObject(); // JSON object to hold farm details
 
         try {
-            farm.put("farmId", 1);
+            /*farm.put("farmId", 1);
             farm.put("farmSize", farmSize);
             farm.put("mainCrop", mainCrop);
             farm.put("location", location);
-            farmer.put("national_id", nationalId);
-            farmer.put("fullName",name);
+            farmer.put("farm", farm); // farmer owns the farm
             farmer.put("bankAccount",667539209);
-            farmer.put("farm", farm);
+            */
+            farmer.put("fullName",name);
+            farmer.put("national_id", nationalId);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, farmer, new Response.Listener<JSONObject>() {
             @Override
@@ -102,7 +105,9 @@ public class Registration extends AppCompatActivity {
 
                 Toast.makeText(Registration.this, "Data sent to PI", Toast.LENGTH_SHORT).show();
                 try {
-                    btn.setText(response.getString("fullName"));
+                    Intent i = new Intent(Registration.this, MainActivity.class);
+                    startActivity(i);
+                    Log.i(TAG, response.getString("fullName"));
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }

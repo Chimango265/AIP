@@ -16,11 +16,12 @@
         android:roundIcon="@drawable/agrilogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.AIP"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31" >
         <activity
             android:name=".Registration"
             android:exported="false"
-            android:theme="@style/Theme.AIP.NoActionBar" />/>
+            android:theme="@style/Theme.AIP.NoActionBar" />
         <activity
             android:name=".QrCodeScanner"
             android:exported="false"

@@ -38,21 +38,17 @@ public class QrCodeScanner extends AppCompatActivity implements View.OnClickList
 
         scanIcon.setOnClickListener(this);
 
+        // Text watcher object to get change activity after changing the contents of textView
         messageText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void afterTextChanged(Editable editable) {
                 registrationActivity();
-
             }
         });
 
@@ -60,11 +56,11 @@ public class QrCodeScanner extends AppCompatActivity implements View.OnClickList
 
     public void registrationActivity() {
 
-        String [] details = getUsefulDetails2(getUsefulDetails(name));
+        String [] details = getUsefulDetails2(getUsefulDetails(name)); // get a string array with name and national Id
 
         Intent i = new Intent(getApplicationContext(), Registration.class);
-        i.putExtra("beneficiary_name", details[0]);
-        i.putExtra("beneficiary_id", details[1]);
+        i.putExtra("beneficiary_name", details[0]); // send name to the registration activity
+        i.putExtra("national_id", details[1]); // send Id number to the registration activity
 
         startActivity(i);
     }
