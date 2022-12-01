@@ -22,6 +22,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.aip.buy.ScanBuyActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,19 +34,30 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView newAdds;
-    List<RecentNames> newNames;
+    List<RecentNames> newNames; //Names recently registered
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getData();
+        getData(); //get user data from the database
 
         Button button = findViewById(R.id.button2);
+
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                scanQrCodeActivity(view);
+                scanQrCodeActivity(view); //Open new activity to scan Qr code
+
+            }
+        });
+
+        Button buy = findViewById(R.id.button);
+
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanQrCodeBuy(view);
 
             }
         });
@@ -62,6 +74,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void scanQrCodeBuy(View v) {
+
+        Intent i = new Intent(this, ScanBuyActivity.class);
+        startActivity(i);
+    }
+
+    //Method to get data from the database using volley api
     public void getData() {
         String url = "http://192.168.43.205:8080/api/register";
         //String url = "http://10.0.2.2:8080/api/register";
@@ -72,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONArray response) {
-                        String []recentNames = new String[response.length()];
+                        String []recentNames = new String[response.length()]; //Array to store received data
                         for(int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jo = response.getJSONObject(i);
@@ -86,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         newNames = new ArrayList<>();
 
                         for(int i = 0; i < response.length(); i++) {
-                            newNames.add(new RecentNames(recentNames[i]));
+                            newNames.add(new RecentNames((recentNames[i].toLowerCase()).trim())); //List to be used by adapater
                         }
 
                         newAdds = (ListView) findViewById(R.id.list);

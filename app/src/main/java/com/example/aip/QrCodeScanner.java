@@ -1,18 +1,21 @@
 package com.example.aip;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -31,12 +34,16 @@ public class QrCodeScanner extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_scanner);
 
-        scanIcon = findViewById(R.id.imageView6);
+        scanIcon = findViewById(R.id.imageView8);
         messageText = findViewById(R.id.textView4);
         idText = findViewById(R.id.textView6);
         //scanBtn = findViewById(R.id.button3);
 
         scanIcon.setOnClickListener(this);
+
+        getSupportActionBar().setTitle("Scan QR code");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_baseline_qr_code_scanner_24);
 
         // Text watcher object to get change activity after changing the contents of textView
         messageText.addTextChangedListener(new TextWatcher() {
@@ -51,8 +58,8 @@ public class QrCodeScanner extends AppCompatActivity implements View.OnClickList
                 registrationActivity();
             }
         });
-
     }
+
 
     public void registrationActivity() {
 
