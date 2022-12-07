@@ -43,7 +43,6 @@ public class QrCodeScanner extends AppCompatActivity implements View.OnClickList
 
         getSupportActionBar().setTitle("Scan QR code");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_baseline_qr_code_scanner_24);
 
         // Text watcher object to get change activity after changing the contents of textView
         messageText.addTextChangedListener(new TextWatcher() {

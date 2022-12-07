@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Method to get data from the database using volley api
     public void getData() {
-        String url = "http://192.168.43.205:8080/api/register";
+        String url = "https://aipbackend.herokuapp.com/api/register";
         //String url = "http://10.0.2.2:8080/api/register";
         RequestQueue getRequestQueue = Volley.newRequestQueue(this);
 

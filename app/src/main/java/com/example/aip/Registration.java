@@ -45,8 +45,6 @@ public class Registration extends AppCompatActivity {
         //setting action bar back button
         getSupportActionBar().setTitle("Register beneficiary");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_baseline_qr_code_scanner_24);
-
 
         displayName = findViewById(R.id.textView5);
         btn = findViewById(R.id.button3);
@@ -81,7 +79,7 @@ public class Registration extends AppCompatActivity {
     }
 
     private void postData(String soilHealth, String locationText, String mainCrop, int farmSize) {
-        String url = "http://192.168.43.205:8080/api/register"; // url to process the API request
+        String url = "https://aipbackend.herokuapp.com/api/register"; // url to process the API request
 
         RequestQueue queue = Volley.newRequestQueue(Registration.this); // volley request Object
 

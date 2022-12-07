@@ -25,12 +25,13 @@
             android:label="@string/title_activity_scan_buy"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AIP"
+            android:parentActivityName=".MainActivity"
             tools:replace="screenOrientation" />
         <activity
             android:name=".Registration"
             android:exported="false"
-            android:theme="@style/Theme.AIP"
-            android:windowSoftInputMode="adjustPan" />
+            android:parentActivityName=".QrCodeScanner"
+            android:theme="@style/Theme.AIP" />
         <activity
             android:name=".QrCodeScanner"
             android:exported="false"
@@ -39,6 +40,7 @@
         <activity
             android:name=".buy.DisplayFarmActivity"
             android:exported="false"
+            android:parentActivityName=".buy.ScanBuyActivity"
             android:label="DisplayFarmActivity"
             android:theme="@style/Theme.AIP"
         />
