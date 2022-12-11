@@ -9,8 +9,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import com.example.aip.MainActivity;
-import com.example.aip.R;
+import com.example.aip.register.Registration;
 
 import org.junit.Rule;
 import org.junit.Test;

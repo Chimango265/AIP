@@ -1,4 +1,4 @@
-package com.example.aip;
+package com.example.aip.register;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
@@ -18,13 +18,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.aip.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,7 +104,9 @@ public class Registration extends AppCompatActivity {
 
                 Toast.makeText(Registration.this, "Data sent to PI", Toast.LENGTH_SHORT).show();
                 try {
-                    Intent i = new Intent(Registration.this, MainActivity.class);
+                    Intent i = new Intent(Registration.this, ConfirmSubsidy.class);
+                    i.putExtra("beneficiary_name", name); // send name to the registration activity
+                    i.putExtra("national_id", nationalId.trim()); // send Id number to the registration activity
                     startActivity(i);
                     Log.i(TAG, response.getString("fullName"));
                 } catch(JSONException e) {

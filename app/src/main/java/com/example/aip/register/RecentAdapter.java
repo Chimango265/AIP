@@ -1,4 +1,4 @@
-package com.example.aip;
+package com.example.aip.register;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.aip.R;
+import com.example.aip.register.RecentNames;
 
 import java.util.List;
 

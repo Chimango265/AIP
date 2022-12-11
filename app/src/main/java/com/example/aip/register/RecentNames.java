@@ -1,4 +1,4 @@
-package com.example.aip;
+package com.example.aip.register;
 
 public class RecentNames {
     String name;

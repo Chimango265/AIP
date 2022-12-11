@@ -18,35 +18,37 @@
         android:theme="@style/Theme.AIP"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".register.ConfirmSubsidy"
+            android:parentActivityName=".register.Registration"
+            android:theme="@style/Theme.AIP"
+            android:exported="false" />
         <activity
             android:name=".buy.ScanBuyActivity"
             android:exported="false"
             android:label="@string/title_activity_scan_buy"
+            android:parentActivityName=".register.MainActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AIP"
-            android:parentActivityName=".MainActivity"
             tools:replace="screenOrientation" />
         <activity
-            android:name=".Registration"
+            android:name=".register.Registration"
             android:exported="false"
-            android:parentActivityName=".QrCodeScanner"
+            android:parentActivityName=".register.MainActivity$QrCodeScanner"
             android:theme="@style/Theme.AIP" />
         <activity
-            android:name=".QrCodeScanner"
+            android:name=".register.MainActivity$QrCodeScanner"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".register.MainActivity"
             android:theme="@style/Theme.AIP" />
         <activity
             android:name=".buy.DisplayFarmActivity"
             android:exported="false"
-            android:parentActivityName=".buy.ScanBuyActivity"
             android:label="DisplayFarmActivity"
-            android:theme="@style/Theme.AIP"
-        />
-
+            android:parentActivityName=".buy.ScanBuyActivity"
+            android:theme="@style/Theme.AIP" />
         <activity
-            android:name=".MainActivity"
+            android:name=".register.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
